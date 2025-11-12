@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &3354867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1236245374350373195, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
-  m_PrefabInstance: {fileID: 2441521791487240849}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a877efcd6817f747957449d42331763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7559033
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +382,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174719461}
   m_CullTransparentMesh: 1
+--- !u!1 &295357178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3388669620369943974, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+  m_PrefabInstance: {fileID: 2441521791487240849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &295357183
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295357178}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.42, z: 0.81}
+  m_Center: {x: 0, y: -0.58, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,8 +1446,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.6665084, z: 1}
+  m_Center: {x: 0, y: -0.27612537, z: 0}
 --- !u!23 &978420180
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2789,10 +2804,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040183248}
-  serializedVersion: 4
-  m_Mass: 3
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  serializedVersion: 5
+  m_Mass: 7.5
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2824,7 +2839,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2848,14 +2863,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040183248}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.71267134, z: -0, w: 0.7014981}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 10.4536495, y: 0.96000004, z: -3.7712631}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1910572492}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90.905, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &2040183253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,26 +3012,42 @@ PrefabInstance:
     - target: {fileID: 1236245374350373195, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3354867}
+      objectReference: {fileID: 2040183248}
     - target: {fileID: 1236245374350373195, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1236245374350373195, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TakeDamage
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1236245374350373195, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Health, Assembly-CSharp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1236245374350373195, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2818045581070708166, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3388669620369943974, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672652353116366606, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+      propertyPath: m_Height
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672652353116366606, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672652353116366606, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5244682381541343415, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3066,6 +3097,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7420039275922495364, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+      propertyPath: m_Mass
+      value: 8.46
+      objectReference: {fileID: 0}
     - target: {fileID: 8366895195932293916, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3082,6 +3117,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3388669620369943974, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 295357183}
     - targetCorrespondingSourceObject: {fileID: 985545646292251461, guid: b2a966a8856039340a8bf31eb1266d23, type: 3}
       insertIndex: -1
       addedObject: {fileID: 469097083}

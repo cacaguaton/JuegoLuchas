@@ -4,14 +4,15 @@ public class EnemyMovement : MonoBehaviour
 {
 
     private CharacterAnimation enemyAnim;
-
     private Rigidbody myBody;
-    public float speed = 5f;
-
     private Transform playerTarget;
 
-    public float attack_Distance = 1f;
+
+    public float speed = 5f;
+    public float attack_Distance = 1.5f;
     private float chase_Player_After_Attack = 1;
+
+
 
     private float current_Attack_Time;
     private float default_Attack_Time = 2f;
@@ -60,7 +61,10 @@ public class EnemyMovement : MonoBehaviour
         if (!followPlayer)
             return;
 
-        if (Vector3.Distance(transform.position, playerTarget.position) > attack_Distance)
+        float distance = Vector3.Distance(transform.position, playerTarget.position);
+
+
+        if (distance > attack_Distance)
         {
             transform.LookAt(playerTarget);
             myBody.linearVelocity = transform.forward * speed;
@@ -69,8 +73,11 @@ public class EnemyMovement : MonoBehaviour
             {
                 enemyAnim.Walk(true);
             }
-            else if (Vector3.Distance(transform.position, playerTarget.position) <= attack_Distance)
-            {
+
+        }
+         else
+        {
+                //Detener el movimiento para atacar
                 myBody.linearVelocity = Vector3.zero;
                 enemyAnim.Walk(false);
 
@@ -78,7 +85,6 @@ public class EnemyMovement : MonoBehaviour
                 attackPlayer = true;
 
             }
-        }
 
     }//Follow target
 
@@ -94,7 +100,10 @@ public class EnemyMovement : MonoBehaviour
 
         if (current_Attack_Time > default_Attack_Time)
         {
-            enemyAnim.EnemyAttack(Random.Range(0, 3));
+            int randomAttack = Random.Range(0, 2);
+            enemyAnim.EnemyAttack(randomAttack);
+
+            Debug.Log("EjecutandoAtaque:" + randomAttack);
 
             current_Attack_Time = 0f;
         }

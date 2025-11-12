@@ -51,11 +51,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) > 0)
         {
-            transform.rotation = Quaternion.Euler(0f, -Mathf.Abs(rotation_Y), 0f);
+            transform.rotation = Quaternion.Euler(0f, -rotation_Y, 0f);
         }
         else if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) < 0)
         {
-            transform.rotation = Quaternion.Euler(0f, -Mathf.Abs(rotation_Y), 0f);
+            transform.rotation = Quaternion.Euler(0f, rotation_Y, 0f);
         }
     }//ROTATION
 
