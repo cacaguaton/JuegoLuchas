@@ -44,7 +44,13 @@ public class UniversalAttack : MonoBehaviour
                     hit[0].GetComponent<HealthSystem>().TakeDamage(attackDamage);
                 }
 
+            }//if is player
+
+            if(isEnemy)
+            {
+                hit[0].GetComponent<NewHealth>().ApplyDamege(attackDamage, false);
             }
+
             //print("Hit " + hit[0].gameObject.name);
 
             gameObject.SetActive(false);

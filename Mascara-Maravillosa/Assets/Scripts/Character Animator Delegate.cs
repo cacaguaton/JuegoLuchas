@@ -33,6 +33,18 @@ public class CharacterAnimatorDelegate : MonoBehaviour
     void rightLegAttack_On() => rightLegAttackPoint.SetActive(true);
     void rightLegAttack_Off() { if (rightLegAttackPoint.activeInHierarchy) rightLegAttackPoint.SetActive(false); }
 
+    
+    /*
+    void TagLeft_Arm() {leftArmAttackPoint.tag = Tags.LEFT_ARM_TAG; }
+
+    void UnTagLeft_Arm() { leftArmAttackPoint.tag = Tags.UNTAGGED_TAG; }
+
+
+
+     void TagLeft_Leg() {leftLegAttackPoint.tag = Tags.LEFT_LEG_TAG; }
+
+    void UnTagLeft_Leg() { leftLegAttackPoint.tag = Tags.UNTAGGED_TAG; }*/
+
     // ---------------- LEVANTARSE ----------------
     void EnemyStandUp()
     {

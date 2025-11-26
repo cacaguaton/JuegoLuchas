@@ -18,7 +18,8 @@ public class NewHealth : MonoBehaviour
     {
         if (CharacterDied) return;
         maxHealth -= damage;
-        if (maxHealth <= 0)
+        //display health UI
+        if (maxHealth <= 0f)
         {
             animationScript.Death();
             CharacterDied = true;
@@ -36,8 +37,8 @@ public class NewHealth : MonoBehaviour
                         animationScript.Hit();
                     }
                 }
-            }
+            }//if is player
         }
-    }
+    } //apply damage
     
 }
