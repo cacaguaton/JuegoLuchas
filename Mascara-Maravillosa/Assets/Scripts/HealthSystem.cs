@@ -39,7 +39,16 @@ public class HealthSystem : MonoBehaviour
         if (_currentHealth <= 0)
         {
             Die();
+            _animationScript.Death();
+            _isDead= true;
+             if(_isPlayer)
+            {
+                GameObject.FindWithTag(Tags.ENEMY_TAG)
+                .GetComponent<EnemyMovement>().enabled = false;
+            }
+
             return;
+           
         }
 
         // Si no es jugador, se aplican animaciones de daño/knockdown
