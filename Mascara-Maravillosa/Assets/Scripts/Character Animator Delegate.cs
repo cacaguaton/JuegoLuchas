@@ -137,13 +137,15 @@ public class CharacterAnimatorDelegate : MonoBehaviour
     void ShakeCameraOnFall()
     {
         
-        shakeCamera.ShouldShake = true;
+        shakeCamera.should_Shake = true;
 
     }
 
     void CharacterDied()
     {
+
         Invoke("DesactivateGameObject", 2f);
+    
     }
     
     void DesactivateGameObject()

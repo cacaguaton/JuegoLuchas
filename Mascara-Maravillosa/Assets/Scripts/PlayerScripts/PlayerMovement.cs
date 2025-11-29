@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private CharacterAnimation player_Anim;
     private Rigidbody myBody;   //Aqui va el personaje
 
-    public float walk_Speed = 3f;  //Velocidad de movimiento
+    public float walk_Speed = 1.5f;  //Velocidad de movimiento
     public float z_Speed = 1.5f;
 
     private float rotation_Y = 90f;
-    private float rotation_Speed = 15f;
+    //private float rotation_Speed = 15f;
+
+   // private HealthSystem healthSystem;
 
 
 
@@ -34,16 +36,20 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
         DetectMovement();
+
     }
 
     void DetectMovement()
     {
+       // if(healthSystem._currentHealth >= 0)
+       // {
         myBody.linearVelocity = new Vector3(
             Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) * (-walk_Speed),
          myBody.linearVelocity.y,
          Input.GetAxisRaw(Axis.VERTICAL_AXIS) * (-z_Speed));
-
+       // }
 
     }
 

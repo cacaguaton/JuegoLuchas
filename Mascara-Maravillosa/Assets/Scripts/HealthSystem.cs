@@ -6,7 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private float _maxHealth = 100f;
-    private float _currentHealth;
+    public float _currentHealth;
     private bool _isDead;
 
     [Header("UI")]
