@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private float rotation_Y = 90f;
     //private float rotation_Speed = 15f;
 
-   // private HealthSystem healthSystem;
 
 
 
@@ -43,13 +42,12 @@ public class PlayerMovement : MonoBehaviour
 
     void DetectMovement()
     {
-       // if(healthSystem._currentHealth >= 0)
-       // {
+
         myBody.linearVelocity = new Vector3(
             Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) * (-walk_Speed),
          myBody.linearVelocity.y,
          Input.GetAxisRaw(Axis.VERTICAL_AXIS) * (-z_Speed));
-       // }
+
 
     }
 

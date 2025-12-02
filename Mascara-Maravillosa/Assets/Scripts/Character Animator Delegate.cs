@@ -143,8 +143,8 @@ public class CharacterAnimatorDelegate : MonoBehaviour
 
     void CharacterDied()
     {
-
-        Invoke("DesactivateGameObject", 2f);
+        CharacterDiedSound();        
+        //Invoke("DesactivateGameObject", 2f);
     
     }
     
