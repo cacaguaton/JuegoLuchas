@@ -1,58 +1,52 @@
 using UnityEngine;
-
+using System.Collections; // Necesario para usar Corrutinas
 
 public class Enemy_Spawn : MonoBehaviour
 {
- // Arrastra tu Prefab aquí desde el Inspector de Unity
+    // Arrastra tu Prefab aquí desde el Inspector de Unity
     [SerializeField]
-    private GameObject Enemy; 
-    [SerializeField]
-    public float tiempo = 3f;
-    public float rangoDeSpawn =6f;
+    private GameObject enemyPrefab;
 
+    [Header("Configuración de Spawn")]
     [SerializeField]
-    public int cantidadDeEnemigos = 3;
-
-    public GameObject[] _Enemy;
+    public float tiempoEntreSpawns = 3f;
+    [SerializeField]
+    public float rangoDeSpawn = 6f;
+    [SerializeField]
+    public int cantidadTotalDeEnemigos = 3;
 
     // Define un punto de spawn (opcional, si no, usa la posición del Spawner)
-    public Transform puntoDeSpawn; 
+    // Si no asignas nada aquí, usará la posición del objeto que tiene este script.
+    public Transform puntoDeSpawn;
 
-    // Método que puedes llamar para generar el objeto
-    public void GenerarObjeto()
+    void Start()
     {
-        // Instancia una copia del prefab en la posición y rotación especificadas.
+        // Iniciamos la corrutina que maneja todo el proceso de spawn.
+        StartCoroutine(SpawnearEnemigosConRetardo());
+    }
 
-        Instantiate(Enemy, puntoDeSpawn.position, puntoDeSpawn.rotation);
+    // Corrutina para manejar el spawn con esperas
+    IEnumerator SpawnearEnemigosConRetardo()
+    {
+        // Asegúrate de que el punto de spawn esté definido, si no, usa la posición actual del objeto.
+        Vector3 basePosition = (puntoDeSpawn != null) ? puntoDeSpawn.position : transform.position;
 
-
-        void SpawnearObjetosConFor()
+        for (int i = 0; i < cantidadTotalDeEnemigos; i++)
         {
-        // El bucle 'for' se ejecuta desde 0 hasta la cantidadDeObjetos definida.
-            for (int i = 0; i < cantidadDeEnemigos; i++)
-            {
             // 1. Calcular una posición aleatoria dentro del rango
-                Vector3 posicionAleatoria = new Vector3(
+            Vector3 posicionAleatoria = basePosition + new Vector3(
                 Random.Range(-rangoDeSpawn, rangoDeSpawn), // Posición X
-                0f,                                        // Posición Y (puedes ajustarla)
+                0f, // Posición Y (ajusta si tus enemigos necesitan spawnear más alto)
                 Random.Range(-rangoDeSpawn, rangoDeSpawn)  // Posición Z
-               // ,EsperarYActivar()
             );
 
-            }
+            // 2. Instanciar el enemigo en la posición aleatoria
+            Instantiate(enemyPrefab, posicionAleatoria, Quaternion.identity); // Quaternion.identity = sin rotación específica
 
+            // 3. Esperar el tiempo definido antes del próximo spawn
+            yield return new WaitForSeconds(tiempoEntreSpawns);
         }
-
     }
-/*
-
-    public IEnumerator EsperarYActivar()
-    {
-        // Espera 3 segundos
-        yield return new WaitForSeconds(tiempo);
-
-        // Llama a la función deseada
-        
-    }*/
 }
+
 

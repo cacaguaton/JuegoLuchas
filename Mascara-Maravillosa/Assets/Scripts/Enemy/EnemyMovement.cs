@@ -1,122 +1,125 @@
 using UnityEngine;
-
+ 
 public class EnemyMovement : MonoBehaviour
 {
-
     private CharacterAnimation enemyAnim;
     private Rigidbody myBody;
     private Transform playerTarget;
-
-
     public float speed = 5f;
     public float attack_Distance = 5f;
     private float chase_Player_After_Attack = 3f;
-
-
-
     private float current_Attack_Time;
     private float default_Attack_Time = 2f;
-
     private bool followPlayer, attackPlayer;
-
-
+ 
     void Awake()
     {
-
-
         enemyAnim = GetComponentInChildren<CharacterAnimation>();
         myBody = GetComponent<Rigidbody>();
-
-        playerTarget = GameObject.FindWithTag(Tags.PLAYER_TAG).transform;
-
+        
+        // Buscar al jugador pero de forma segura
+        GameObject player = GameObject.FindWithTag(Tags.PLAYER_TAG);
+        if (player != null)
+        {
+            playerTarget = player.transform;
+        }
     }
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+ 
     void Start()
     {
         followPlayer = true;
         current_Attack_Time = default_Attack_Time;
     }
-
-    // Update is called once per frame
-    void Update()
+ 
+private float searchPlayerInterval = 1f;
+private float searchTimer = 0f;
+ 
+void Update()
+{
+    Attack();
+    
+    // Buscar jugador solo cada cierto tiempo (optimización)
+    searchTimer += Time.deltaTime;
+    if (searchTimer >= searchPlayerInterval)
     {
-
-        Attack();
-
+        searchTimer = 0f;
+        
+        if (playerTarget == null)
+        {
+            GameObject player = GameObject.FindWithTag(Tags.PLAYER_TAG);
+            if (player != null)
+            {
+                playerTarget = player.transform;
+                followPlayer = true;
+            }
+            else
+            {
+                followPlayer = false;
+                attackPlayer = false;
+                enemyAnim.Walk(false);
+            }
+        }
     }
-
+}
+ 
     void FixedUpdate()
     {
         FollowTarget();
     }
-
+ 
     void FollowTarget()
     {
-
-
-        //if we are not supposed to follow the player
-        if (!followPlayer)
+        // Si no hay jugador o no debemos seguirlo, salir
+        if (playerTarget == null || !followPlayer)
             return;
-
+ 
         float distance = Vector3.Distance(transform.position, playerTarget.position);
-
-
+        
         if (distance > attack_Distance)
         {
             transform.LookAt(playerTarget);
             myBody.linearVelocity = transform.forward * speed;
-
+            
             if (myBody.linearVelocity.sqrMagnitude != 0)
             {
                 enemyAnim.Walk(true);
             }
-
         }
-         else
+        else
         {
-                //Detener el movimiento para atacar
-                myBody.linearVelocity = Vector3.zero;
-                enemyAnim.Walk(false);
-
-                followPlayer = false;
-                attackPlayer = true;
-
-            }
-
-    }//Follow target
-
+            // Detener el movimiento para atacar
+            myBody.linearVelocity = Vector3.zero;
+            enemyAnim.Walk(false);
+            followPlayer = false;
+            attackPlayer = true;
+        }
+    }
+ 
     void Attack()
     {
-
-        //if we should NOT attack the player
-        //exit the funtion
-        if (!attackPlayer)
+        // Si no hay jugador o no debemos atacar, salir
+        if (playerTarget == null || !attackPlayer)
             return;
-
+ 
         current_Attack_Time += Time.deltaTime;
-
+        
         if (current_Attack_Time > default_Attack_Time)
         {
             int randomAttack = Random.Range(0, 2);
             enemyAnim.EnemyAttack(randomAttack);
-
             Debug.Log("EjecutandoAtaque:" + randomAttack);
-
             current_Attack_Time = 0f;
         }
-
-        if (Vector3.Distance(transform.position, playerTarget.position) > attack_Distance +
-        chase_Player_After_Attack)
+ 
+        // Verificar distancia solo si el jugador existe
+        if (playerTarget != null)
         {
-            attackPlayer = false;
-            followPlayer = true;
+            float distance = Vector3.Distance(transform.position, playerTarget.position);
+            if (distance > attack_Distance + chase_Player_After_Attack)
+            {
+                attackPlayer = false;
+                followPlayer = true;
+            }
         }
-
-    }//attack
-
-
-}// class
-
+    }
+}

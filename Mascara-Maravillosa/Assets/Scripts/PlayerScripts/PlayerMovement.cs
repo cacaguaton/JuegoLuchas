@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) * (-walk_Speed),
          myBody.linearVelocity.y,
          Input.GetAxisRaw(Axis.VERTICAL_AXIS) * (-z_Speed));
-
+         
 
     }
 
